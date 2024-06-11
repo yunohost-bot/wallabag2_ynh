@@ -27,11 +27,12 @@ index 9ab51621..675d8905 100644
  
      # the main part of the security, where you can set up firewalls
      # for specific sections of your app
-@@ -39,6 +47,9 @@ security:
+@@ -39,6 +47,10 @@ security:
  
          secured_area:
              pattern: ^/
 +            http_basic_ldap:
++                provider: yunohost_users
 +                service: yunohost.ldap
 +                dn_string: "uid={username},ou=users,dc=yunohost,dc=org"
              form_login:
@@ -54,4 +55,3 @@ index 270e79d9..efdd34d5 100644
          public: false
 -- 
 2.45.1
-
