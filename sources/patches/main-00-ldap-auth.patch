@@ -47,8 +47,11 @@ index 270e79d9..efdd34d5 100644
              - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
  
 +    yunohost.ldap:
-+        class: Symfony\Component\Ldap\LdapClient
-+        arguments: ["localhost"]
++        class: Symfony\Component\Ldap\Ldap
++        arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
++    Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
++        arguments:
++            - host: localhost
 +
      craue_config_cache_provider:
          class: Symfony\Component\Cache\Adapter\FilesystemAdapter
