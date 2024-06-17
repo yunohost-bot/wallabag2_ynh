@@ -1,15 +1,15 @@
-From e8027b881cffa0ed75de2c809fd88cf3cee42a0a Mon Sep 17 00:00:00 2001
+From 488b781e030637ab6feafc0da640217e1d654ead Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?F=C3=A9lix=20Pi=C3=A9dallu?= <felix@piedallu.me>
 Date: Tue, 11 Jun 2024 11:50:36 +0200
-Subject: [PATCH 1/4] Add ldap auth
+Subject: [PATCH 1/3] Add ldap auth
 
 ---
- app/config/security.yml | 11 +++++++++++
- app/config/services.yml |  4 ++++
- 2 files changed, 15 insertions(+)
+ app/config/security.yml | 12 ++++++++++++
+ app/config/services.yml |  7 +++++++
+ 2 files changed, 19 insertions(+)
 
 diff --git a/app/config/security.yml b/app/config/security.yml
-index 9ab51621..675d8905 100644
+index 9ab51621..f4ea3d47 100644
 --- a/app/config/security.yml
 +++ b/app/config/security.yml
 @@ -13,6 +13,14 @@ security:
@@ -39,22 +39,20 @@ index 9ab51621..675d8905 100644
                  provider: fos_userbundle
                  csrf_token_generator: security.csrf.token_manager
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 270e79d9..efdd34d5 100644
+index 270e79d9..c67341e8 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -176,6 +176,10 @@ services:
+@@ -394,3 +394,10 @@ services:
+         public: false
          tags:
-             - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
- 
+             - { name: pagerfanta.view, alias: default_wallabag }
++
 +    Symfony\Component\Ldap\Ldap:
 +        arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
 +        tags: [ldap]
 +    Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
 +        arguments:
 +            - host: localhost
-+
-     craue_config_cache_provider:
-         class: Symfony\Component\Cache\Adapter\FilesystemAdapter
-         public: false
 -- 
 2.45.1
+
