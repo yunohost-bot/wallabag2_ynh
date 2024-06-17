@@ -40,8 +40,11 @@ fi
 #=================================================
 ynh_script_progression --message="Installing dependencies for LDAP..." --weight=1
 
-ynh_install_composer
+# Some trick to actually not run composer install…
+ynh_install_composer --install_args="--dry-run"
 ynh_composer_exec --workdir="$install_dir/sources" --commands="require symfony/ldap"
+SYMFONY_ENV=prod ynh_composer_exec --commands="install --no-dev $install_args" \
+
 chown -R "$app:www-data" "$install_dir"
 
 #=================================================
