@@ -4,6 +4,8 @@
 # COMMON VARIABLES
 #=================================================
 
+YNH_COMPOSER_VERSION="2.1.1"
+
 wb_conf="$install_dir/app/config/parameters.yml"
 
 #=================================================
