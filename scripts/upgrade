@@ -45,13 +45,10 @@ fi
 #=================================================
 ynh_script_progression --message="Reconfiguring $app..." --weight=1
 
-# Copy and set Wallabag dist configuration
-ynh_add_config --template="parameters.yml" --destination="$wb_conf"
-chmod 600 "$wb_conf"
-chown "$app:www-data" "$wb_conf"
+ynh_add_config --template="parameters.yml" --destination="$install_dir/app/config/parameters.yml"
 
-# Alias for php-cli execution command
-php_exec=("php$phpversion" "$install_dir/bin/console" --no-interaction --env=prod)
+chmod 600 "$install_dir/app/config/parameters.yml"
+chown "$app:$app" "$install_dir/app/config/parameters.yml"
 
 # Upgrade database and clear the cache
 php_exec doctrine:migrations:migrate
