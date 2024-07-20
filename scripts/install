@@ -52,9 +52,7 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 ynh_script_progression --message="Adding $app's configuration files..." --weight=1
 
-ynh_add_config --template="parameters.yml" --destination="$wb_conf"
-chmod 600 "$wb_conf"
-chown "$app:www-data" "$wb_conf"
+ynh_add_config --template="parameters.yml" --destination="$install_dir/app/config/parameters.yml"
 
 chmod 600 "$install_dir/app/config/parameters.yml"
 chown "$app:$app" "$install_dir/app/config/parameters.yml"
